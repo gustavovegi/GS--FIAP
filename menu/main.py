@@ -1,32 +1,51 @@
 import json
-# escrevendo com JSON
+#escrevendo com arquivo json
 def write_Json(file_,data):
     with open(file_, 'w') as file:
         json.dump(data,file)
     file.close()
 
-#VALIDAÇÕES DE CADASTRO
-def valid_cpf():
-    cpf = input('cpf')
-    tamanho_cpf = len(str(cpf))
-    if ( tamanho_cpf == 11):
-        valid = cpf
-        return valid
-    else:
-        print("cpf invalido")
-        valid_cpf()
-    return
+#Validando dado do cadastro
+def valid_email():
+    #retirar os espços caso o usuario coloque
+        email = input("E-mail:")
+        if not '@' in email:
+            print("email invalido")
+            valid_email()
+        return email
+
+def valid_number(campo, rule):
+    #retirar os espaços do caso o usuario coloque
+    #exemplo 524 547 778 51
+    var = None
+    while True:
+        var = int(input(campo))
+        tamanho = len(str(var))
+        if tamanho == rule:
+            break
+        else:
+            print(f"{campo} invalido")
+
+    return var
 
 #OPÇÃO UM
 def cadastras_user():
-# validar as ifos, transforma em um dicionario para depois conerver em um json
-    nome_user = input("nome completo:")
-    cep = valid_cpf()
+
+    nome_user = input("Nome Completo:")
+    CPF = valid_number("CPF",11)
+    email = valid_email()
+    print("formato do numero (xx)xxxxxxxxx")
+    number_phone = valid_number("Telefone",11)
+    #fazendo dicionario com os cadastros
+
     user_info = {
+        "CPF": CPF,
         "Nome Completo": nome_user,
-        "CPF": cep
+        "E-mail": email,
+        "Celular": number_phone
     }
     write_Json("../json/user.json", user_info)
+    print("usuário cadastrado com sucesso!!")
 
 cadastras_user()
 
