@@ -39,7 +39,6 @@ def cadastras_user():
     number_phone = valid_number("Telefone",11)
     #fazendo dicionario com os cadastros
     user_info = {
-
         "Nome Completo": nome_user,
         "E-mail": email,
           "Celular": number_phone,
@@ -48,6 +47,8 @@ def cadastras_user():
 
     write_Json("../json/user.json", user_info)
     print("usuário cadastrado com sucesso!!")
+
+#opção 2
 
 def anamnese_on():
     # Solicitar as informações necessárias para a anamnese
@@ -97,10 +98,7 @@ def anamnese_on():
         urgencia = "I"
     else:
         urgencia = "III"
-
-    print("urgencia nivel: ")
-
-
+    print(f"urgencia nivel: {urgencia}")
     write_Json("../json/anamnese.json", anamnese)
 
 anamnese_on()
