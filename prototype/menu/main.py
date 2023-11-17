@@ -8,14 +8,14 @@ def write_Json(file_,data):
         json.dump(data,file)
     file.close()
 
-#Validando dado do cadastro
+#Validando campos
 def valid_email():
-    #melhorar a validação
         email = input("E-mail:")
         if not '@' in email:
             print("email invalido")
             valid_email()
         return email
+    
 
 def limpa_dado(campo):
     resposta = ''
@@ -24,10 +24,9 @@ def limpa_dado(campo):
         if ( i.isnumeric()):
             resposta += i
     return resposta
+
           
 def valid_number(campo, rule):
-    #retirar os espaços do caso o usuario coloque
-    #exemplo 524 547 778 51
     var = None
     while True:
         var = (input(campo))
@@ -49,7 +48,7 @@ def cadastras_user():
     email = valid_email()
     print("formato do numero (xx)xxxxxxxxx")
     number_phone = valid_number("Telefone",11)
-    #fazendo dicionario com os cadastros
+
     user_info = {
         "Nome Completo": nome_user,
         "E-mail": email,
@@ -60,7 +59,7 @@ def cadastras_user():
     write_Json("../json/user.json", user_info)
     print("usuário cadastrado com sucesso!!")
 
-#opção 2
+#OPÇÃO2 
 
 def anamnese_on():
     # Solicitar as informações necessárias para a anamnese
