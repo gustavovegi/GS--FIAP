@@ -46,7 +46,6 @@ def cadastras_user():
     nome_user = input("Nome Completo:")
     CPF = valid_number("CPF",11)
     email = valid_email()
-    print("formato do numero (xx)xxxxxxxxx")
     number_phone = valid_number("Telefone",11)
 
     user_info = {
@@ -96,7 +95,7 @@ def anamnese_on():
     }
 
     # Verificar a urgência da consulta
-    #prototipando a inteligencia artificial kakakakakakaka
+    #prototipando a inteligencia artificial
     #confirmar com danielo
 
     if queixa_principal.lower() == "dor no peito":
@@ -112,8 +111,25 @@ def anamnese_on():
     print(f"urgencia nivel: {urgencia}")
     write_Json("../json/anamnese.json", anamnese)
 
-#anamnese_on()
-cadastras_user()
+# Configuração do menu
+opcoes_menu = {
+    "1": cadastras_user,
+    "2": anamnese_on,
+}
+print("seja-bem vindo ao anameasy")
+while True:
+    print("\nSelecione uma opção:")
+    print("1 - Usuário")
+    print("2 - preeencher ficha")
+
+    escolha = input("->")
+
+    if escolha in opcoes_menu:
+        opcoes_menu[escolha]()
+    else:
+        print("Opção inválida. Por favor, digite novamente.")
+
+
 
 
 
