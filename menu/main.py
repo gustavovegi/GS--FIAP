@@ -1,5 +1,7 @@
+ 
 import json
 import datetime
+
 #escrevendo com arquivo json
 def write_Json(file_,data):
     with open(file_, 'w') as file:
@@ -15,19 +17,29 @@ def valid_email():
             valid_email()
         return email
 
+def limpa_dado(campo):
+    resposta = ''
+    campo = str(campo)
+    for i in campo:
+        if ( i.isnumeric()):
+            resposta += i
+    return resposta
+          
 def valid_number(campo, rule):
     #retirar os espaços do caso o usuario coloque
     #exemplo 524 547 778 51
     var = None
     while True:
-        var = int(input(campo))
+        var = (input(campo))
+        var = limpa_dado(var)
         tamanho = len(str(var))
         if tamanho == rule:
             break
         else:
             print(f"{campo} invalido")
-
+    print(var)
     return var
+
 
 #OPÇÃO UM
 def cadastras_user():
@@ -101,7 +113,8 @@ def anamnese_on():
     print(f"urgencia nivel: {urgencia}")
     write_Json("../json/anamnese.json", anamnese)
 
-anamnese_on()
+#anamnese_on()
+cadastras_user()
 
 
 
