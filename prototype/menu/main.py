@@ -1,12 +1,18 @@
- 
-import json
 import datetime
+import json
+import math
 
 #escrevendo com arquivo json
 def write_Json(file_,data):
     with open(file_, 'w') as file:
         json.dump(data,file)
     file.close()
+def read_json(doc):
+    with open(doc, "r") as file:
+        data = json.load(file)
+    file.close()
+    return data
+
 
 #Validando campos
 def valid_email():
@@ -57,10 +63,8 @@ def cadastras_user():
     write_Json("../json/user.json", user_info)
     print("usuário cadastrado com sucesso!!")
 
-#OPÇÃO2 
-
+#OPÇÃODOIS
 def anamnese_on():
-
     #se o json do cadastro estiver sem nada pedir para o usuário se cadastrar
     #configurar algumas repostas para não ter erro dos usuários ( valida-la)
 
@@ -109,20 +113,50 @@ def anamnese_on():
     print(f"urgencia nivel: {urgencia}")
     write_Json("../json/anamnese.json", anamnese)
 
+#OPAÇÃOTRÊS
+
+#configurações de distancia
+def calculate_distance(latitude1, longitude1, latitude2, longitude2):
+    earth_radius_km = 6371.01
+    distance_in_km = earth_radius_km * math.acos(
+        math.sin(math.radians(latitude1)) * math.sin(math.radians(latitude2)) +
+        math.cos(math.radians(latitude1)) * math.cos(math.radians(latitude2)) * math.cos(math.radians(longitude1 - longitude2))
+    )
+    return distance_in_km
+def get_hospital():
+    latitude = -23.644909
+    longitude = -46.636527
+    try:
+        hospital_data = read_json('../json/hospital.json')
+        hospitals =[ ]
+        for hospital in hospital_data:
+             distance = calculate_distance(latitude, longitude, hospital["latitude"], hospital["longitude"])
+             hospitals.append({
+                    "name": hospital["name"],
+                    "distance": distance
+            })
+        print(hospitals)
+        return hospitals
+
+    except Exception as e:
+        print(e)
+        return None
+
 # Configuração do menu
 opcoes_menu = {
     "1": cadastras_user,
     "2": anamnese_on,
+    "3":get_hospital
 }
+
 print("seja-bem vindo ao anameasy")
 while True:
     print("\nSelecione uma opção:")
     print("1 - Usuário")
     print("2 - preeencher ficha")
-    print("3 hospiais perto de mim")
+    print("3 - ir para hospital")
 
     escolha = input("->")
-
     if escolha in opcoes_menu:
         opcoes_menu[escolha]()
     else:

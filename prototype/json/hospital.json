@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "name": "Hospital do Coração",
+    "address": "Av. Paulista, 1234",
+    "phone": "(11) 1234-5678",
+    "latitude": -23.564789,
+    "longitude": -46.654321,
+    "type": "público",
+    "rating": 4.5
+  },
+  {
+    "id": 2,
+    "name": "Hospital das Clínicas",
+    "address": "Av. Dr. Enéas de Carvalho Aguiar, 443",
+    "phone": "(11) 9876-5432",
+    "latitude": -23.564789,
+    "longitude": -46.654321,
+    "type": "público",
+    "rating": 5.0
+  },
+  {
+    "id": 3,
+    "name": "Hospital Albert Einstein",
+    "address": "Rua Dr. Enéas de Carvalho Aguiar, 647",
+    "phone": "(11) 3456-7890",
+    "latitude": -23.564789,
+    "longitude": -46.654321,
+    "type": "privado",
+    "rating": 4.0
+  }
+]
