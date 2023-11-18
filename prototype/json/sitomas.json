@@ -1,0 +1,66 @@
+{
+  "categories": [
+    {
+      "name": "Vermelho",
+      "symptoms": [
+        "Dor no peito",
+        "Febre alta",
+        "Inconsciência",
+        "Desmaio",
+        "Parada cardiorrespiratória",
+        "Trauma grave",
+        "Choque",
+        "Dor forte",
+        "Sangramento"
+      ]
+    },
+    {
+      "name": "Laranja",
+      "symptoms": [
+        "Dor abdominal intensa",
+        "Dificuldade respiratória súbita",
+        "Cefaleia intensa",
+        "Choque",
+        "Dor forte",
+        "Sangramento"
+      ]
+    },
+    {
+      "name": "Amarelo",
+      "symptoms": [
+        "Febre alta",
+        "Dor abdominal",
+        "Dificuldade respiratória",
+        "Cefaleia",
+        "Desidratação",
+        "Dor intensa",
+        "Sangramento leve"
+      ]
+    },
+    {
+      "name": "Verde",
+      "symptoms": [
+        "Doença crônica",
+        "Dor leve",
+        "Infecção leve",
+        "Desconforto",
+        "Dor leve",
+        "Sangramento leve"
+      ]
+    },
+    {
+      "name": "Azul",
+      "symptoms": [
+    "Desconforto",
+    "Dor leve",
+    "Sangramento leve",
+    "Tontura leve",
+    "Náusea leve",
+    "Fadiga leve",
+    "Picada de inseto",
+    "Irritação na pele",
+    "Dor de cabeça leve"
+      ]
+    }
+  ]
+}

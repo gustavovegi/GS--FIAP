@@ -63,6 +63,12 @@ def cadastras_user():
     print("usuário cadastrado com sucesso!!")
 
 #OPÇÃODOIS
+def check_symptoms_urgency(symptoms, urgency_data):
+    for category in urgency_data["categories"]:
+        if any(symptom in category["symptoms"] for symptom in symptoms):
+            return category["name"]
+    return "Não classificado"
+
 def anamnese_on():
     #se o json do cadastro estiver sem nada pedir para o usuário se cadastrar
     #configurar algumas repostas para não ter erro dos usuários ( valida-la)
@@ -93,23 +99,10 @@ def anamnese_on():
         "Beber": beber,
         "Histórico familiar": historico_familiar
     }
-
-    # Verificar a urgência da consulta
-    #prototipando a inteligencia artificial
-    #confirmar com danielo
-
-    if queixa_principal.lower() == "dor no peito":
-        urgencia = "I"
-    elif dias_queixa.lower() == "menos de 24 horas":
-        urgencia = "I"
-    elif doencas_cronicas.lower() == "sim":
-        urgencia = "II"
-    elif queixa_principal.lower() == "febre alta" and dias_queixa.lower() == "menos de 24 horas":
-        urgencia = "I"
-    else:
-        urgencia = "III"
-
-    print(f"urgencia nivel: {urgencia}")
+    urgency_data = read_json('../json/sitomas.json')
+    patient_symptoms = [queixa_principal, doencas_cronicas, cirurgias, alergias, medicamentos, fumar, beber,historico_familiar]
+    urgency_category = check_symptoms_urgency(patient_symptoms, urgency_data)
+    print(f"A categoria de urgência é: {urgency_category}")
     write_Json("../json/anamnese.json", anamnese)
 
 #OPAÇÃOTRÊS
@@ -125,27 +118,36 @@ def get_hospital():
     longitude = -46.636527
     try:
         hospital_data = read_json('../json/hospital.json')
-        hospitals =[ ]
+        hospitals = []
         for hospital in hospital_data:
-             distance = calculate_distance(latitude, longitude, hospital["latitude"], hospital["longitude"])
-             hospitals.append({
-                    "name": hospital["name"],
-                    "distance": distance
+            distance = calculate_distance(latitude, longitude, hospital["latitude"], hospital["longitude"])
+            hospitals.append({
+                "name": hospital["name"],
+                "distance": distance
             })
-        print(hospitals)
-
-        # fazer usuário escolher hospital
-        #fazer as validações
-        #mostrat hospitais escolhido
-
-        print("Escolha o hospital desejado")
-        escolha_horapital = input( "->")
-        numero = random.randint(1, 50)
-        print(f"sua senha de atendimento é a {numero}")
-        return hospitals
-
-    except Exception as e:
-        print(e)
+        while True:
+            # Mostra os hospitais disponíveis
+            print("Hospitais disponíveis:")
+            for i, hospital in enumerate(hospitals, start=1):
+                print(f"{i}. {hospital['name']} - Distância: {hospital['distance']} km")
+            escolha_hospital = input("Escolha o número do hospital desejado (ou 's' para sair): ")
+            if escolha_hospital.lower() == 's':
+                print("Você saiu da seleção de hospitais.")
+                return None
+            try:
+                escolha_hospital = int(escolha_hospital)
+                if 1 <= escolha_hospital <= len(hospitals):
+                    hospital_escolhido = hospitals[escolha_hospital - 1]
+                    print(f"Você escolheu o hospital {hospital_escolhido['name']}.")
+                    numero_senha = random.randint(1, 50)
+                    print(f"Sua senha de atendimento é a {numero_senha}")
+                    return hospital_escolhido
+                else:
+                    print("Escolha inválida. Por favor, escolha um número de hospital válido.")
+            except ValueError:
+                print("Por favor, digite um número válido.")
+    except Exception as err:
+        print(err)
         return None
 #Opção 4
 def encerrar_programa():
