@@ -1,10 +1,11 @@
 import datetime
+import random
 import json
 import math
 
 #escrevendo com arquivo json
-def write_Json(file_,data):
-    with open(file_, 'w') as file:
+def write_Json(file_path,data):
+    with open(file_path, 'w') as file:
         json.dump(data,file)
     file.close()
 def read_json(doc):
@@ -13,7 +14,6 @@ def read_json(doc):
     file.close()
     return data
 
-
 #Validando campos
 def valid_email():
         email = input("E-mail:")
@@ -21,7 +21,6 @@ def valid_email():
             print("email invalido")
             valid_email()
         return email
-    
 
 def limpa_dado(campo):
     resposta = ''
@@ -114,8 +113,6 @@ def anamnese_on():
     write_Json("../json/anamnese.json", anamnese)
 
 #OPAÇÃOTRÊS
-
-#configurações de distancia
 def calculate_distance(latitude1, longitude1, latitude2, longitude2):
     earth_radius_km = 6371.01
     distance_in_km = earth_radius_km * math.acos(
@@ -136,17 +133,33 @@ def get_hospital():
                     "distance": distance
             })
         print(hospitals)
+
+        # fazer usuário escolher hospital
+        #fazer as validações
+        #mostrat hospitais escolhido
+
+        print("Escolha o hospital desejado")
+        escolha_horapital = input( "->")
+        numero = random.randint(1, 50)
+        print(f"sua senha de atendimento é a {numero}")
         return hospitals
 
     except Exception as e:
         print(e)
         return None
+#Opção 4
+def encerrar_programa():
+    print("Encerrando...")
+    exit()
+    return
+
 
 # Configuração do menu
 opcoes_menu = {
     "1": cadastras_user,
     "2": anamnese_on,
-    "3":get_hospital
+    "3":get_hospital,
+    "4": encerrar_programa
 }
 
 print("seja-bem vindo ao anameasy")
@@ -155,6 +168,7 @@ while True:
     print("1 - Usuário")
     print("2 - preeencher ficha")
     print("3 - ir para hospital")
+    print("4- Logout")
 
     escolha = input("->")
     if escolha in opcoes_menu:
