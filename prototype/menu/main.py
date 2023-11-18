@@ -54,17 +54,14 @@ def cadastras_user():
           "Celular": number_phone,
         "CPF": CPF,
     }
-
     write_Json("../json/user.json", user_info)
     print("usuário cadastrado com sucesso!!")
 
 #OPÇÃO2 
 
 def anamnese_on():
-    # Solicitar as informações necessárias para a anamnese
-    #usar infomações do cadastro
+
     #se o json do cadastro estiver sem nada pedir para o usuário se cadastrar
-    #exibir os dados que estão no cadastro
     #configurar algumas repostas para não ter erro dos usuários ( valida-la)
 
     day = datetime.datetime.now()
@@ -108,6 +105,7 @@ def anamnese_on():
         urgencia = "I"
     else:
         urgencia = "III"
+
     print(f"urgencia nivel: {urgencia}")
     write_Json("../json/anamnese.json", anamnese)
 
@@ -121,6 +119,7 @@ while True:
     print("\nSelecione uma opção:")
     print("1 - Usuário")
     print("2 - preeencher ficha")
+    print("3 hospiais perto de mim")
 
     escolha = input("->")
 
