@@ -1,4 +1,4 @@
-# README - Anameasy (Protótipo Demonstrativo)
+# README - Anameasy 
 
 **Bem-vindo ao Anameasy - Facilitando o seu Atendimento Médico!**
 
