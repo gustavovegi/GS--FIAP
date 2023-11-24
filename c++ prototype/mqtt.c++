@@ -238,3 +238,4 @@ void loop() {
 }
 
 // projeto wokwi -> https://wokwi.com/projects/382249370722572289
+// projeto node red -> http://localhost:1880/#flow/d8d919a093a26076
