@@ -237,3 +237,4 @@ void loop() {
   Segmento = -1;
 }
 
+// projeto wokwi -> https://wokwi.com/projects/382249370722572289
