@@ -236,3 +236,4 @@ void loop() {
 
   Segmento = -1;
 }
+
